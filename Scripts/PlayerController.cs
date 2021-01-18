@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     // because speed is public i can see it on the unity menu
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    public GameObject looseTextObject;
 
     private Rigidbody rb;
     private int count;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
         count = 0;
         SetCountText();
         winTextObject.SetActive(false);
+        looseTextObject.SetActive(false);
         startPos = this.transform.position;
     }
 
@@ -111,6 +113,15 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Enemy")){
             this.transform.position=startPos;
+            count = count -1;
+            if (count<0){
+                looseTextObject.SetActive(true);
+                //easy way to stop the game while i work on a reset button
+                speed=0;
+                movementX=0;
+                movementY=0;
+            }
+            SetCountText();
         }
     }
 }
