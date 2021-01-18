@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+    private Vector3 startPos;
 
     //added to try and use accelerometer
     void Main()
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
         count = 0;
         SetCountText();
         winTextObject.SetActive(false);
+        startPos = this.transform.position;
     }
 
     void OnMove(InputValue movementValue)
@@ -106,6 +108,9 @@ public class PlayerController : MonoBehaviour
             count = count+1;
             //each time u hit a ball the count goes up by 1
             SetCountText();
+        }
+        if (other.gameObject.CompareTag("Enemy")){
+            this.transform.position=startPos;
         }
     }
 }
