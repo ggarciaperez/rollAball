@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
     public GameObject looseTextObject;
+    public GameObject restartButton;
 
     private Rigidbody rb;
     private int count;
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
         SetCountText();
         winTextObject.SetActive(false);
         looseTextObject.SetActive(false);
+        restartButton.SetActive(false);
         startPos = this.transform.position;
     }
 
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
         if (count >= 12)
         {
             winTextObject.SetActive(true);
+            restartButton.SetActive(true);
         }
     }
 
@@ -120,6 +123,7 @@ public class PlayerController : MonoBehaviour
                 speed=0;
                 movementX=0;
                 movementY=0;
+                restartButton.SetActive(true);
             }
             SetCountText();
         }
