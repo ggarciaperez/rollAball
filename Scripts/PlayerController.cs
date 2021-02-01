@@ -67,8 +67,16 @@ public class PlayerController : MonoBehaviour
         }
         else
         {   
-            Vector3 movement = new Vector3(Input.acceleration.x, 0.0f, Input.acceleration.y);
-            rb.AddForce(movement * speed);
+            // recogemos los datos del acelerometro
+            Debug.Log("Estoy en el acelerometro");
+            Vector3 dir = Vector3.zero;
+            dir.x = -Input.acceleration.y;
+            dir.z = Input.acceleration.x;
+            if (dir.sqrMagnitude > 1)
+                dir.Normalize();
+        
+            dir *= Time.deltaTime;
+            transform.Translate(dir * speed);
         }
 
     }
